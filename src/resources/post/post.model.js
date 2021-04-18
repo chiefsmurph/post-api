@@ -8,6 +8,10 @@ const postSchema = new mongoose.Schema(
       trim: true,
       maxlength: 200
     },
+    screenshot: {
+      type: String,
+      required: true
+    },
     message: {
       type: String,
     },
