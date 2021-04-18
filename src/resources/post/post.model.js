@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const itemSchema = new mongoose.Schema(
+const postSchema = new mongoose.Schema(
   {
     url: {
       type: String,
@@ -20,6 +20,6 @@ const itemSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-itemSchema.index({ list: 1, name: 1 }, { unique: true })
+postSchema.index({ url: 1, createdBy: 1 }, { unique: true })
 
-export const post = mongoose.model('post', itemSchema)
+export const post = mongoose.model('post', postSchema)

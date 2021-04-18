@@ -14,23 +14,20 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    settings: {
-      theme: {
+
+    permissions: {
+      canPost: {
         type: String,
         required: true,
         default: 'dark'
       },
-      notifications: {
+      canComment: {
         type: Boolean,
         required: true,
         default: true
       },
-      compactMode: {
-        type: Boolean,
-        required: true,
-        default: false
-      }
     }
+    
   },
   { timestamps: true }
 )
