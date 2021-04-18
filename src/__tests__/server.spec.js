@@ -7,7 +7,7 @@ import mongoose from 'mongoose'
 describe('API Authentication:', () => {
   let token
   beforeEach(async () => {
-    const user = await User.create({ email: 'a@a.com', password: 'hello' })
+    const user = await User.create({ username: 'a@a.com', password: 'hello' })
     token = newToken(user)
   })
 

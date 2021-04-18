@@ -17,8 +17,8 @@ export const verifyToken = token =>
   })
 
 export const signup = async (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    return res.status(400).send({ message: 'need email and password' })
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).send({ message: 'need username and password' })
   }
 
   try {
@@ -32,15 +32,15 @@ export const signup = async (req, res) => {
 }
 
 export const signin = async (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    return res.status(400).send({ message: 'need email and password' })
+  if (!req.body.username || !req.body.password) {
+    return res.status(400).send({ message: 'need username and password' })
   }
 
-  const invalid = { message: 'Invalid email and passoword combination' }
+  const invalid = { message: 'Invalid username and passoword combination' }
 
   try {
-    const user = await User.findOne({ email: req.body.email })
-      .select('email password')
+    const user = await User.findOne({ username: req.body.username })
+      .select('username password')
       .exec()
 
     if (!user) {

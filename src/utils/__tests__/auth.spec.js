@@ -25,7 +25,7 @@ describe('Authentication:', () => {
   })
 
   describe('signup', () => {
-    test('requires email and password', async () => {
+    test('requires username and password', async () => {
       expect.assertions(2)
 
       const req = { body: {} }
@@ -45,7 +45,7 @@ describe('Authentication:', () => {
     test('creates user and and sends new token from user', async () => {
       expect.assertions(2)
 
-      const req = { body: { email: 'hello@hello.com', password: '293jssh' } }
+      const req = { body: { username: 'hello@hello.com', password: '293jssh' } }
       const res = {
         status(status) {
           expect(status).toBe(201)
@@ -56,7 +56,7 @@ describe('Authentication:', () => {
           user = await User.findById(user.id)
             .lean()
             .exec()
-          expect(user.email).toBe('hello@hello.com')
+          expect(user.username).toBe('hello@hello.com')
         }
       }
 
@@ -65,7 +65,7 @@ describe('Authentication:', () => {
   })
 
   describe('signin', () => {
-    test('requires email and password', async () => {
+    test('requires username and password', async () => {
       expect.assertions(2)
 
       const req = { body: {} }
@@ -85,7 +85,7 @@ describe('Authentication:', () => {
     test('user must be real', async () => {
       expect.assertions(2)
 
-      const req = { body: { email: 'hello@hello.com', password: '293jssh' } }
+      const req = { body: { username: 'hello@hello.com', password: '293jssh' } }
       const res = {
         status(status) {
           expect(status).toBe(401)
@@ -103,11 +103,11 @@ describe('Authentication:', () => {
       expect.assertions(2)
 
       await User.create({
-        email: 'hello@me.com',
+        username: 'hello@me.com',
         password: 'yoyoyo'
       })
 
-      const req = { body: { email: 'hello@me.com', password: 'wrong' } }
+      const req = { body: { username: 'hello@me.com', password: 'wrong' } }
       const res = {
         status(status) {
           expect(status).toBe(401)
@@ -124,7 +124,7 @@ describe('Authentication:', () => {
     test('creates new token', async () => {
       expect.assertions(2)
       const fields = {
-        email: 'hello@me.com',
+        username: 'hello@me.com',
         password: 'yoyoyo'
       }
       const savedUser = await User.create(fields)
@@ -202,7 +202,7 @@ describe('Authentication:', () => {
 
     test('finds user form token and passes on', async () => {
       const user = await User.create({
-        email: 'hello@hello.com',
+        username: 'hello@hello.com',
         password: '1234'
       })
       const token = `Bearer ${newToken(user)}`
