@@ -3,16 +3,14 @@ import controllers from './post.controllers'
 
 const router = Router()
 
+router
+  .route('/screenshot')
+  .get(controllers.screenshotUrl)
+  
 // /api/post
 router
   .route('/')
-  .get((req, res, next) => {
-    if (req.params.id) {
-      controllers.getOne(req, res, next);
-    } else {
-      controllers.getMany(req, res, next);
-    }
-  })
+  .get(controllers.getMany)
   .post(controllers.createOne)
 
 // /api/post/:id
@@ -21,5 +19,6 @@ router
   .get(controllers.getOne)
   .put(controllers.updateOne)
   .delete(controllers.removeOne)
+
 
 export default router

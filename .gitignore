@@ -1,6 +1,9 @@
 # Config
 src/config.js
 
+# More
+screenshots/
+
 # Logs
 logs
 *.log

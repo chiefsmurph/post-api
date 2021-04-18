@@ -17,6 +17,8 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
+app.use('/screenshots', express.static('screenshots'))
+
 app.post('/signup', signup)
 app.post('/signin', signin)
 
