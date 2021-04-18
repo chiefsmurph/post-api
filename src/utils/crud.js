@@ -19,7 +19,7 @@ export const getOne = model => async (req, res) => {
 export const getMany = model => async (req, res) => {
   try {
     const docs = await model
-      // .find({ createdBy: req.user._id })
+      .find()
       .sort({ _id: -1 })
       .lean()
       .exec()
