@@ -24,7 +24,11 @@ export default {
     const { url } = req.query;
     console.log({ url });
     const browser = await puppeteer.launch({ headless: true });     // Launch a "browser"
+    
     const page = await browser.newPage();         // Open a new page
+    await page.setUserAgent(
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36'
+    );
     const filename = filenamifyUrl(url) + '.png';
     await page.goto(url);                         // Go to the website
     await page.screenshot({                       // Screenshot the website using defined options
