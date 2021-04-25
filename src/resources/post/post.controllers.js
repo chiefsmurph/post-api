@@ -23,7 +23,7 @@ export default {
   screenshotUrl: async (req, res) => {
     const { url } = req.query;
     console.log({ url });
-    const browser = await puppeteer.launch();     // Launch a "browser"
+    const browser = await puppeteer.launch({ headless: true });     // Launch a "browser"
     const page = await browser.newPage();         // Open a new page
     const filename = filenamifyUrl(url) + '.png';
     await page.goto(url);                         // Go to the website
